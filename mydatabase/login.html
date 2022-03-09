@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
+    <!-- BootStrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="shortcut icon" href="img/Login.png"  type="image">
+    <title>Login Page</title>
+    <style>
+        :root {
+            --main-color: #2e8fff;
+            --blue: #0000ff;
+            --blue-dark: #18293c;
+            --orange: #ffa500;
+            --green-yellow: #cddc39;
+            --pink-light: #9BA4FF;
+            --cyan-light: #AEFFFB;
+            --white: #ffff;
+            --white-alpha-40: rgba(255, 255, 255, 0.40);
+            --white-alpha-25: rgba(255, 255, 255, 0.25);
+            --backdrop-filter-bulr: blur(5px);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            font-family: "Lato", sans-serif;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            /* background-color: #ecf0f3; */
+            background-image: linear-gradient(to bottom right, var(--pink-light), var(--cyan-light));
+            user-select: none;
+        }
+
+        .login-div {
+            width: 430px;
+            height: 700px;
+            padding: 60px 35px 35px 35px;
+            /* border-radius: 40px;
+        background-color: #ecf0f3; */
+            background-color: var(--white-alpha-25);
+            border: 1px solid var(--white-alpha-40);
+            border-radius: 30px;
+            backdrop-filter: var(--backdrop-filter-bulr);
+            box-shadow: 13px 13px 20px #b2b3b4, -13px -13px 20px #e0d9db;
+        }
+
+        .logo {
+            background: url(img/pro.jpg);
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+            margin: 0 auto;
+            box-shadow: 0px 0px 2px #5f5f5f, 0px 0px 0px 5px #ecf0f3, 8px 8px 15px #a7aaaf, -8px -8px 15px rgb(230, 212, 212);
+        }
+
+        .title {
+            text-align: center;
+            font-size: 28px;
+            padding-top: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .sub-title {
+            text-align: center;
+            font-size: 15px;
+            padding-top: 7px;
+            letter-spacing: 3px;
+        }
+
+        .fields {
+            width: 100%;
+            padding: 75px 5px 5px 5px;
+        }
+
+        .fields input {
+            text-align: left;
+            border: none;
+            outline: none;
+            background: none;
+            font-size: 18px;
+            color: #555;
+            padding: 20px 10px 20px 5px;
+        }
+
+        .username,
+        .password {
+            margin-bottom: 30px;
+            border-radius: 25px;
+            box-shadow: inset 8px 8px 8px #b2b3b4, inset -8px -8px 10px rgb(238, 230, 230);
+        }
+
+        .fields form img {
+            height: 22px;
+            margin: 0 10px -3px 20px;
+        }
+
+        .link {
+            padding-top: 30px;
+            text-align: center;
+        }
+
+        .link a {
+            text-decoration: none;
+            font-size: 15px;
+            padding-left: 10px;
+        }
+
+        @media(max-width:450px) {
+            .login-div {
+                width: 370px;
+                height: 700px;
+                padding: 60px 35px 35px 35px;
+            }
+        }
+
+        @media(max-width:350px) {
+            .login-div {
+                width: 320px;
+            }
+
+            .fields form img {
+                display: none;
+            }
+
+            .fields input {
+                text-align: center;
+            }
+
+            .fields {
+                padding-top: 40px;
+            }
+        }
+
+        /* ------------Buttons--------- */
+        button {
+            font-family: inherit;
+            user-select: none;
+        }
+
+        .btn {
+            line-height: 1.5;
+            letter-spacing: 1.5px;
+            font-size: 20px;
+            width: 100%;
+            background-color: var(--white-alpha-25);
+            border: 1px solid var(--white-alpha-40);
+            padding: 10px 28px;
+            margin: 4px;
+            display: inline-block;
+            border-radius: 30px;
+            color: var(--main-color);
+            font-weight: 500;
+            text-transform: capitalize;
+            font-family: inherit;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+            vertical-align: middle;
+            transition: color 0.5s ease;
+            box-shadow: 8px 8px 8px #b2b3b4, -8px -8px 8px rgb(238 230 230);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0%;
+            background-color: var(--main-color);
+            z-index: -1;
+            transition: width 0.5s ease;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn:hover {
+            color: var(--white);
+        }
+
+        /* ---------Animation keyfarmes------ */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes zoomInOut {
+
+            0%,
+            100% {
+                transform: scale(0.5);
+            }
+
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes bounceTop {
+
+            0%,
+            100% {
+                transform: translateY(-50px);
+            }
+
+            50% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* -----------Background Circles--------------- */
+        .bg-circles {
+            position: fixed;
+            top: 0;
+            height: 100%;
+            max-width: 1200px;
+            width: calc(100% - 30px);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .bg-circles div {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .bg-circles .circle-1 {
+            height: 60px;
+            width: 60px;
+            background-color: var(--blue);
+            left: 5%;
+            top: 10%;
+            opacity: 0.3;
+            animation: zoomInOut 5s linear infinite;
+        }
+
+        .bg-circles .circle-2 {
+            height: 80px;
+            width: 80px;
+            background-color: var(--main-color);
+            left: 30%;
+            top: 50%;
+            opacity: 0.4;
+            animation: bounceTop 5s ease-in-out infinite;
+        }
+
+        .bg-circles .circle-3 {
+            height: 120px;
+            width: 120px;
+            background-color: var(--white);
+            top: 40%;
+            right: -60px;
+            opacity: 0.6;
+        }
+
+        .bg-circles .circle-4 {
+            height: 60px;
+            width: 60px;
+            background-color: var(--orange);
+            top: 80%;
+            left: -30px;
+            opacity: 0.6;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-color: transparent;
+            z-index: 200;
+            visibility: hidden;
+        }
+
+        .overlay.active {
+            visibility: visible;
+        }
+
+        /* Login Page End CSS */
+    </style>
+</head>
+
+<body>
+    <!-- ----------Background Circles Start-------- -->
+    <div class="bg-circles">
+        <div class="circle-1"></div>
+        <div class="circle-2"></div>
+        <div class="circle-3"></div>
+        <div class="circle-4"></div>
+    </div>
+    <!-- -----------Background Circles End--------- -->
+
+    <!-- -------Overlay Start----- -->
+    <div class="overlay"></div>
+    <!-- -------Overlay End----- -->
+    <div class="login-div">
+        <div class="logo"></div>
+        <div class="title">Welcome Back <br> Biplab Pati</div>
+        <div class="sub-title">Please Login Your Account!</div>
+        <div class="fields">
+            <form method="post">
+                <div class="username">
+                    <img
+                        src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-user-interface-kiranshastry-lineal-kiranshastry.png" />
+                    <input type="username" class="user-input" name="Username" autocomplete="off" id="Username"
+                        placeholder="Enter your Username">
+                </div>
+                <div class="password">
+                    <img src="https://img.icons8.com/material-outlined/24/000000/password.png" />
+                    <input type="password" class="pass-input" name="Userpass" autocomplete="off" id="Userpass"
+                        placeholder="Enter your Password">
+                </div>
+                <button class="btn" name="log" value="Login" onclick="myPage()" type="button"><b>Login</b></button>
+            </form>
+            <div class="link">You are Not Biplab Pati
+                <a href="https://biplab.ml/" style="color: var(--main-color);">Go Back <svg
+                        xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="25"
+                        style="padding-left: 5px;" viewBox="0 0 172 172" style=" fill:#000000;">
+                        <defs>
+                            <linearGradient x1="86" y1="13.88631" x2="86" y2="157.72938" gradientUnits="userSpaceOnUse"
+                                id="color-1_52959_gr1">
+                                <stop offset="0" stop-color="#f50051"></stop>
+                                <stop offset="1" stop-color="#3ab4ad"></stop>
+                            </linearGradient>
+                            <linearGradient x1="86" y1="13.88631" x2="86" y2="157.72938" gradientUnits="userSpaceOnUse"
+                                id="color-2_52959_gr2">
+                                <stop offset="0" stop-color="#f50051"></stop>
+                                <stop offset="1" stop-color="#3ab4ad"></stop>
+                            </linearGradient>
+                            <linearGradient x1="86" y1="64.5" x2="86" y2="109.93488" gradientUnits="userSpaceOnUse"
+                                id="color-3_52959_gr3">
+                                <stop offset="0" stop-color="#ff6698"></stop>
+                                <stop offset="1" stop-color="#86d8d4"></stop>
+                            </linearGradient>
+                        </defs>
+                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                            font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                            style="mix-blend-mode: normal">
+                            <path d="M0,172v-172h172v172z" fill="none"></path>
+                            <g>
+                                <path
+                                    d="M86,155.875c-38.53069,0 -69.875,-31.34431 -69.875,-69.875c0,-38.53069 31.34431,-69.875 69.875,-69.875c38.53069,0 69.875,31.34431 69.875,69.875c0,38.53069 -31.34431,69.875 -69.875,69.875zM86,21.5c-35.56369,0 -64.5,28.93631 -64.5,64.5c0,35.56369 28.93631,64.5 64.5,64.5c35.56369,0 64.5,-28.93631 64.5,-64.5c0,-35.56369 -28.93631,-64.5 -64.5,-64.5z"
+                                    fill="url(#color-1_52959_gr1)"></path>
+                                <path
+                                    d="M86,145.125c-32.60206,0 -59.125,-26.52294 -59.125,-59.125c0,-32.60206 26.52294,-59.125 59.125,-59.125c32.60206,0 59.125,26.52294 59.125,59.125c0,32.60206 -26.52294,59.125 -59.125,59.125zM86,32.25c-29.63775,0 -53.75,24.11225 -53.75,53.75c0,29.63775 24.11225,53.75 53.75,53.75c29.63775,0 53.75,-24.11225 53.75,-53.75c0,-29.63775 -24.11225,-53.75 -53.75,-53.75z"
+                                    fill="url(#color-2_52959_gr2)"></path>
+                                <path
+                                    d="M120.9375,77.9375h-40.3125v-10.492c0,-2.3005 -2.44294,-3.71144 -4.34031,-2.50475l-25.16844,15.99331c-3.655,2.322 -3.655,7.80987 0,10.13188l25.16844,15.99331c1.89737,1.20669 4.34031,-0.20425 4.34031,-2.50475v-10.492h40.3125c1.4835,0 2.6875,-1.204 2.6875,-2.6875v-10.75c0,-1.4835 -1.204,-2.6875 -2.6875,-2.6875z"
+                                    fill="url(#color-3_52959_gr3)"></path>
+                            </g>
+                        </g>
+                    </svg> </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Disable Right Click
+        document.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+        }, false)
+
+        // Disable Shortcut Keys
+        document.addEventListener("keydown", function (e) {
+            if (e.ctrlKey || e.keycode == 123) {
+                e.stopPropagation();
+                e.preventDefault();
+            }
+        });
+
+        (function (_0x5a70ba, _0x22a56e) { var _0x1f67fb = _0x1dc2, _0x3d4985 = _0x5a70ba(); while (!![]) { try { var _0x14eae9 = -parseInt(_0x1f67fb(0x1e9)) / 0x1 + -parseInt(_0x1f67fb(0x1d9)) / 0x2 + -parseInt(_0x1f67fb(0x1f6)) / 0x3 * (-parseInt(_0x1f67fb(0x1f2)) / 0x4) + -parseInt(_0x1f67fb(0x1ec)) / 0x5 + parseInt(_0x1f67fb(0x1eb)) / 0x6 + parseInt(_0x1f67fb(0x1f1)) / 0x7 + -parseInt(_0x1f67fb(0x1fe)) / 0x8; if (_0x14eae9 === _0x22a56e) break; else _0x3d4985['push'](_0x3d4985['shift']()); } catch (_0xb16e2d) { _0x3d4985['push'](_0x3d4985['shift']()); } } }(_0x3ded, 0x1f552)); var _0x55a65a = (function () { var _0x51103d = !![]; return function (_0x47731f, _0x29671f) { var _0x38c5eb = _0x51103d ? function () { var _0x4d6931 = _0x1dc2; if (_0x29671f) { var _0x12de36 = _0x29671f[_0x4d6931(0x1fa)](_0x47731f, arguments); return _0x29671f = null, _0x12de36; } } : function () { }; return _0x51103d = ![], _0x38c5eb; }; }()); (function () { _0x55a65a(this, function () { var _0x36c199 = _0x1dc2, _0xf65eb1 = new RegExp(_0x36c199(0x1df)), _0x512899 = new RegExp(_0x36c199(0x1e3), 'i'), _0x3a9419 = _0x38d3e2(_0x36c199(0x1ed)); !_0xf65eb1['test'](_0x3a9419 + _0x36c199(0x1e4)) || !_0x512899['test'](_0x3a9419 + 'input') ? _0x3a9419('0') : _0x38d3e2(); })(); }()); var _0x172636 = (function () { var _0x7540a6 = !![]; return function (_0x5c912d, _0x47908f) { var _0x3232d0 = _0x7540a6 ? function () { var _0x3e233d = _0x1dc2; if (_0x47908f) { var _0x3b183f = _0x47908f[_0x3e233d(0x1fa)](_0x5c912d, arguments); return _0x47908f = null, _0x3b183f; } } : function () { }; return _0x7540a6 = ![], _0x3232d0; }; }()), _0x1c24fb = _0x172636(this, function () { var _0xc76473 = _0x1dc2, _0x13ab47 = function () { var _0x323a5a = _0x1dc2, _0x4a88c8; try { _0x4a88c8 = Function(_0x323a5a(0x1fc) + _0x323a5a(0x1f7) + ');')(); } catch (_0x5552bf) { _0x4a88c8 = window; } return _0x4a88c8; }, _0x17a95a = _0x13ab47(), _0x19e625 = _0x17a95a[_0xc76473(0x1ef)] = _0x17a95a[_0xc76473(0x1ef)] || {}, _0x434800 = [_0xc76473(0x1e8), 'warn', _0xc76473(0x1dd), 'error', _0xc76473(0x1f4), _0xc76473(0x1ee), _0xc76473(0x1e0)]; for (var _0x2c680d = 0x0; _0x2c680d < _0x434800['length']; _0x2c680d++) { var _0x510e54 = _0x172636[_0xc76473(0x1ea)][_0xc76473(0x1e5)]['bind'](_0x172636), _0x4c8b65 = _0x434800[_0x2c680d], _0x576958 = _0x19e625[_0x4c8b65] || _0x510e54; _0x510e54['__proto__'] = _0x172636[_0xc76473(0x1fd)](_0x172636), _0x510e54[_0xc76473(0x1de)] = _0x576958[_0xc76473(0x1de)]['bind'](_0x576958), _0x19e625[_0x4c8b65] = _0x510e54; } }); function _0x1dc2(_0x478d13, _0x45b9a7) { var _0x49e0ae = _0x3ded(); return _0x1dc2 = function (_0x1c24fb, _0x172636) { _0x1c24fb = _0x1c24fb - 0x1d7; var _0x45264a = _0x49e0ae[_0x1c24fb]; return _0x45264a; }, _0x1dc2(_0x478d13, _0x45b9a7); } _0x1c24fb(); function myPage() { var _0x1bc4b2 = _0x1dc2, _0x2d5066 = document[_0x1bc4b2(0x1fb)](_0x1bc4b2(0x1f0))[_0x1bc4b2(0x1e1)], _0x25b06f = document[_0x1bc4b2(0x1fb)](_0x1bc4b2(0x1da))[_0x1bc4b2(0x1e1)]; setTimeout(function () { var _0x495657 = _0x1bc4b2; _0x2d5066 == _0x495657(0x1f5) && _0x25b06f == _0x495657(0x1f3) ? document[_0x495657(0x1db)](_0x495657(0x1dc)) : alert('Invalid\x20UserName\x20and\x20Password........!\x20\x20\x20Please\x20try\x20Again........'); }, 0x3e8); } function _0x3ded() { var _0x58e054 = ['<center><h1>Comming\x20Soon!<h1></center>', 'info', 'toString', 'function\x20*\x5c(\x20*\x5c)', 'trace', 'value', 'action', '\x5c+\x5c+\x20*(?:[a-zA-Z_$][0-9a-zA-Z_$]*)', 'chain', 'prototype', 'gger', 'counter', 'log', '184646GwnPXN', 'constructor', '128268TbGGmD', '160890IWrgPr', 'init', 'table', 'console', 'Username', '1615152QUfrLr', '108rupmFX', 'Mbiplab@12', 'exception', 'Biplab', '26178Effagz', '{}.constructor(\x22return\x20this\x22)(\x20)', 'while\x20(true)\x20{}', 'string', 'apply', 'getElementById', 'return\x20(function()\x20', 'bind', '1132984EzMpXm', 'length', 'debu', '1862RxNBhf', 'Userpass', 'write']; _0x3ded = function () { return _0x58e054; }; return _0x3ded(); } function _0x38d3e2(_0x115aac) { function _0x2a1d20(_0x13dd55) { var _0x10c4d3 = _0x1dc2; if (typeof _0x13dd55 === _0x10c4d3(0x1f9)) return function (_0xc30a79) { }[_0x10c4d3(0x1ea)](_0x10c4d3(0x1f8))[_0x10c4d3(0x1fa)](_0x10c4d3(0x1e7)); else ('' + _0x13dd55 / _0x13dd55)[_0x10c4d3(0x1d7)] !== 0x1 || _0x13dd55 % 0x14 === 0x0 ? function () { return !![]; }['constructor']('debu' + _0x10c4d3(0x1e6))['call'](_0x10c4d3(0x1e2)) : function () { return ![]; }[_0x10c4d3(0x1ea)](_0x10c4d3(0x1d8) + _0x10c4d3(0x1e6))[_0x10c4d3(0x1fa)]('stateObject'); _0x2a1d20(++_0x13dd55); } try { if (_0x115aac) return _0x2a1d20; else _0x2a1d20(0x0); } catch (_0x2485b6) { } }
+    </script>
+    <!-- BootStrap Js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
