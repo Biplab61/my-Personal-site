@@ -108,26 +108,31 @@ const form = document.forms['contact-form']
 form.addEventListener('submit', e => {
   e.preventDefault()
   fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-    .then(response => alert("Thanks for Contacting me..!  I Will Contact You Soon..."))
+    .then(response => console.log('Message Sent Successfully.'))
     .catch(error => console.error('Error!', error.message))
 })
 
-//  Disable Submit Button
-function dis() {
-    setTimeout(function () {
-        document.getElementById("disable").disabled = true;
-    }, 500);
-    setTimeout(function () {
-        document.getElementById("disable").disabled = false;
-    }, 20000);
+//  Popup Sucess open and close Button
+let popup = document.getElementById("success-popup");
+let rem = document.getElementById("contact");
+function openPopup() {
+    popup.classList.add("open-popup");
+    rem.classList.remove("active");
+}
+function closePopup() {
+    popup.classList.remove("open-popup");
+    rem.classList.add("active");
 }
 
-// Disable Right Click
+
+
+
+//Disable Right Click
 document.addEventListener("contextmenu", function(e){
     e.preventDefault();
 },false)
 
-// Disable Shortcut Keys
+//Disable Shortcut Keys
 document.addEventListener("keydown",function(e){
     if(e.ctrlKey || e.keycode==123){
         e.stopPropagation();
